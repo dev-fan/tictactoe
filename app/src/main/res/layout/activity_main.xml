@@ -136,6 +136,6 @@
         android:id="@+id/tvWin"
         android:gravity="center_horizontal"
         android:paddingTop="5dp"
-        android:textSize="50sp"
+        android:textSize="35sp"
         android:textColor="@color/red" />
 </LinearLayout>
