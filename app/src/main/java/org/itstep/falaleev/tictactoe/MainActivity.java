@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final static String LOG_TAG_MAIN = "TTT_Main";
     private final static String LOG_TAG_LISTENER = "TTT_Listener";
+    private final static int PLAYER_X = 1;
+    private final static int PLAYER_O = 2;
 
     Button btnPlay1;
     Button btnPlay2;
@@ -69,17 +71,17 @@ public class MainActivity extends AppCompatActivity {
         finish = false;
     }
 
-    public boolean move(int idx) {
-        Log.d(LOG_TAG_MAIN, "move(): idx=" + idx);
-        ImageView v = elements.get(idx);
+    public boolean move(int position) {
+        Log.d(LOG_TAG_MAIN, "move(): position=" + position);
+        ImageView v = elements.get(position);
         if (!finish && !(v.getBackground() instanceof BitmapDrawable)) {
             int pic_res;
             if (counter % 2 == 0) {
                 pic_res = R.drawable.x;
-                field[idx] = 1;
+                field[position] = PLAYER_X;
             } else {
                 pic_res = R.drawable.o;
-                field[idx] = 2;
+                field[position] = PLAYER_O;
             }
             v.setBackgroundResource(pic_res);
             counter++;
@@ -99,8 +101,26 @@ public class MainActivity extends AppCompatActivity {
         }
         if (!empty_field.isEmpty()) {
             Random rnd = new Random();
-            int idx = empty_field.get(rnd.nextInt(empty_field.size()));
-            move(idx);
+            int position = empty_field.get(rnd.nextInt(empty_field.size()));
+            for (int c[] : win) {
+                if (field[c[0]] == PLAYER_O && field[c[2]] == 0 && field[c[0]] == field[c[1]]) {
+                    position = c[2];
+                    break;
+                } else if (field[c[0]] == PLAYER_O && field[c[1]] == 0 && field[c[0]] == field[c[2]]) {
+                    position = c[1];
+                    break;
+                } else if (field[c[1]] == PLAYER_O && field[c[0]] == 0 && field[c[1]] == field[c[2]]) {
+                    position = c[0];
+                    break;
+                } else if (field[c[0]] > 0 && field[c[2]] == 0 && field[c[0]] == field[c[1]]) {
+                    position = c[2];
+                } else if (field[c[0]] > 0 && field[c[1]] == 0 && field[c[0]] == field[c[2]]) {
+                    position = c[1];
+                } else if (field[c[1]] > 0 && field[c[0]] == 0 && field[c[1]] == field[c[2]]) {
+                    position = c[0];
+                }
+            }
+            move(position);
         }
     }
 
@@ -112,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 finish = true;
                 tvWin.setText(
                         String.format(getResources().getString(R.string.player_win)
-                                , (field[c[0]] == 1 ? "X" : "O"))
+                                , (field[c[0]] == PLAYER_X ? "X" : "O"))
                 );
                 return;
             }
@@ -128,8 +148,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onMove(View v) {
         Log.d(LOG_TAG_LISTENER, "onMove(): " + v.getId());
-        int idx = elements.indexOf(v);
-        if (move(idx) && !finish && with_comp) {
+        int position = elements.indexOf(v);
+        if (move(position) && !finish && with_comp) {
             moveComp();
         }
     }
