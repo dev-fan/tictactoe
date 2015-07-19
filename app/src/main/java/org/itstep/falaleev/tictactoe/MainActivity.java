@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         finish = false;
     }
 
-    public void move(int idx) {
+    public boolean move(int idx) {
         Log.d(LOG_TAG_MAIN, "move(): idx=" + idx);
         ImageView v = elements.get(idx);
         if (!finish && !(v.getBackground() instanceof BitmapDrawable)) {
@@ -84,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
             v.setBackgroundResource(pic_res);
             counter++;
             checkGame();
+            return true;
         }
+        return false;
     }
 
     private void moveComp() {
@@ -127,8 +129,7 @@ public class MainActivity extends AppCompatActivity {
     public void onMove(View v) {
         Log.d(LOG_TAG_LISTENER, "onMove(): " + v.getId());
         int idx = elements.indexOf(v);
-        move(idx);
-        if (!finish && with_comp) {
+        if (move(idx) && !finish && with_comp) {
             moveComp();
         }
     }
