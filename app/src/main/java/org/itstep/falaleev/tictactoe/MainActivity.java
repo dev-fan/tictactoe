@@ -94,14 +94,27 @@ public class MainActivity extends AppCompatActivity {
     private void moveComp() {
         Log.d(LOG_TAG_MAIN, "moveComp()");
         ArrayList<Integer> empty_field = new ArrayList<>();
+        ArrayList<Integer> empty_field_priority = new ArrayList<>();
+        int position = -1;
         for (int i = 0; i < field.length; i++) {
             if (field[i] == 0) {
                 empty_field.add(i);
+                if (i % 2 == 0) {
+                    if (i == 4) {
+                        position = 4;
+                    }
+                    empty_field_priority.add(i);
+                }
             }
         }
         if (!empty_field.isEmpty()) {
             Random rnd = new Random();
-            int position = empty_field.get(rnd.nextInt(empty_field.size()));
+            if (position < 0 && !empty_field_priority.isEmpty()) {
+                position = empty_field_priority.get(rnd.nextInt(empty_field_priority.size()));
+            }
+            if (position < 0) {
+                position = empty_field.get(rnd.nextInt(empty_field.size()));
+            }
             for (int c[] : win) {
                 if (field[c[0]] == PLAYER_O && field[c[2]] == 0 && field[c[0]] == field[c[1]]) {
                     position = c[2];
