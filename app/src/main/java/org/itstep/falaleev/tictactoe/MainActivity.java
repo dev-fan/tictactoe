@@ -1,6 +1,7 @@
 package org.itstep.falaleev.tictactoe;
 
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         String.format(getResources().getString(R.string.player_win)
                                 , (field[c[0]] == PLAYER_X ? "X" : "O"))
                 );
+                playSound((field[c[0]] == PLAYER_X ? R.raw.x : (with_comp ? R.raw.fail : R.raw.o)));
                 return;
             }
         }
@@ -157,12 +159,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void playSound(int fileId) {
+        MediaPlayer mp = MediaPlayer.create(this, fileId);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                try {
+                    mp.release();
+                    mp = null;
+                } catch (Exception e) {
+                    Log.d(LOG_TAG_LISTENER, "OnCompletionListener.onCompletion(): " + e.getMessage());
+                }
+            }
+        });
+        mp.start();
+        mp.setVolume(0.25f, 0.25f);
+    }
+
     // Handlers
 
     public void onMove(View v) {
         Log.d(LOG_TAG_LISTENER, "onMove(): " + v.getId());
         int position = elements.indexOf(v);
-        if (move(position) && !finish && with_comp) {
+        Boolean moved = move(position);
+        playSound(R.raw.move);
+        if (moved && !finish && with_comp) {
             moveComp();
         }
     }
@@ -179,5 +200,38 @@ public class MainActivity extends AppCompatActivity {
         }
         reset();
     }
+
+    // Menu
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        menu.add(3, 7, 5, "Gps").setIntent(new Intent(this, GpsActivity.class));
+//        // Загрузка меню из файла (Inflate the menu; this adds items to the action bar if it is present.)
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//        menu.setGroupVisible(1, chbOptMenu.isChecked());
+//        return super.onPrepareOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        Intent intent;
+//        switch (id) {
+//            case R.id.miPreference:
+//                startActivity(new Intent(this, PreferenceActivity.class));
+//                break;
+//        }
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            startActivity(new Intent(this, SettingsActivity.class));
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 }

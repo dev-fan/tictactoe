@@ -1,28 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:paddingLeft="@dimen/fields_padding_tl"
-        android:paddingTop="@dimen/fields_padding_tl"
-        android:paddingRight="@dimen/fields_padding_br"
-        android:paddingBottom="@dimen/fields_padding_br">
+        android:padding="@dimen/fields_padding">
 
         <ImageView
             android:layout_width="@dimen/field"
             android:layout_height="@dimen/field"
             android:background="@color/white"
             android:id="@+id/imv0"
-            android:layout_margin="@dimen/field_margin"
             android:onClick="onMove"/>
         <ImageView
             android:layout_width="@dimen/field"
@@ -32,7 +29,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imv0"
             android:layout_toEndOf="@+id/imv0"
-            android:layout_margin="@dimen/field_margin"
+            android:layout_marginLeft="@dimen/field_margin"
             android:onClick="onMove"/>
         <ImageView
             android:layout_width="@dimen/field"
@@ -42,7 +39,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imv1"
             android:layout_toEndOf="@+id/imv1"
-            android:layout_margin="@dimen/field_margin"
+            android:layout_marginLeft="@dimen/field_margin"
             android:onClick="onMove" />
 
         <ImageView
@@ -53,7 +50,7 @@
             android:layout_below="@+id/imv0"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="@dimen/field_margin"
+            android:layout_marginTop="@dimen/field_margin"
             android:onClick="onMove" />
         <ImageView
             android:layout_width="@dimen/field"
@@ -63,7 +60,8 @@
             android:layout_below="@+id/imv0"
             android:layout_toRightOf="@+id/imv3"
             android:layout_toEndOf="@+id/imv3"
-            android:layout_margin="@dimen/field_margin"
+            android:layout_marginTop="@dimen/field_margin"
+            android:layout_marginLeft="@dimen/field_margin"
             android:onClick="onMove" />
         <ImageView
             android:layout_width="@dimen/field"
@@ -73,7 +71,8 @@
             android:layout_below="@+id/imv1"
             android:layout_toRightOf="@+id/imv4"
             android:layout_toEndOf="@+id/imv4"
-            android:layout_margin="@dimen/field_margin"
+            android:layout_marginTop="@dimen/field_margin"
+            android:layout_marginLeft="@dimen/field_margin"
             android:onClick="onMove" />
 
         <ImageView
@@ -84,7 +83,7 @@
             android:layout_below="@+id/imv3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_margin="@dimen/field_margin"
+            android:layout_marginTop="@dimen/field_margin"
             android:onClick="onMove" />
         <ImageView
             android:layout_width="@dimen/field"
@@ -94,7 +93,8 @@
             android:layout_below="@+id/imv4"
             android:layout_toRightOf="@+id/imv6"
             android:layout_toEndOf="@+id/imv6"
-            android:layout_margin="@dimen/field_margin"
+            android:layout_marginTop="@dimen/field_margin"
+            android:layout_marginLeft="@dimen/field_margin"
             android:onClick="onMove" />
         <ImageView
             android:layout_width="@dimen/field"
@@ -104,7 +104,8 @@
             android:layout_below="@+id/imv5"
             android:layout_toRightOf="@+id/imv7"
             android:layout_toEndOf="@+id/imv7"
-            android:layout_margin="@dimen/field_margin"
+            android:layout_marginTop="@dimen/field_margin"
+            android:layout_marginLeft="@dimen/field_margin"
             android:onClick="onMove" />
     </RelativeLayout>
     <LinearLayout
@@ -135,7 +136,7 @@
         android:text=""
         android:id="@+id/tvWin"
         android:gravity="center_horizontal"
-        android:paddingTop="5dp"
-        android:textSize="35sp"
+        android:paddingTop="@dimen/info_margin_top"
+        android:textSize="@dimen/info_text_size"
         android:textColor="@color/red" />
 </LinearLayout>
