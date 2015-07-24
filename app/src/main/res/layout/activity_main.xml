@@ -19,8 +19,7 @@
             android:layout_width="@dimen/field"
             android:layout_height="@dimen/field"
             android:background="@color/white"
-            android:id="@+id/imv0"
-            android:onClick="onMove"/>
+            android:id="@+id/imv0"/>
         <ImageView
             android:layout_width="@dimen/field"
             android:layout_height="@dimen/field"
@@ -29,8 +28,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imv0"
             android:layout_toEndOf="@+id/imv0"
-            android:layout_marginLeft="@dimen/field_margin"
-            android:onClick="onMove"/>
+            android:layout_marginLeft="@dimen/field_margin"/>
         <ImageView
             android:layout_width="@dimen/field"
             android:layout_height="@dimen/field"
@@ -39,8 +37,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imv1"
             android:layout_toEndOf="@+id/imv1"
-            android:layout_marginLeft="@dimen/field_margin"
-            android:onClick="onMove" />
+            android:layout_marginLeft="@dimen/field_margin"/>
 
         <ImageView
             android:layout_width="@dimen/field"
@@ -50,8 +47,7 @@
             android:layout_below="@+id/imv0"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/field_margin"
-            android:onClick="onMove" />
+            android:layout_marginTop="@dimen/field_margin"/>
         <ImageView
             android:layout_width="@dimen/field"
             android:layout_height="@dimen/field"
@@ -61,8 +57,7 @@
             android:layout_toRightOf="@+id/imv3"
             android:layout_toEndOf="@+id/imv3"
             android:layout_marginTop="@dimen/field_margin"
-            android:layout_marginLeft="@dimen/field_margin"
-            android:onClick="onMove" />
+            android:layout_marginLeft="@dimen/field_margin"/>
         <ImageView
             android:layout_width="@dimen/field"
             android:layout_height="@dimen/field"
@@ -72,8 +67,7 @@
             android:layout_toRightOf="@+id/imv4"
             android:layout_toEndOf="@+id/imv4"
             android:layout_marginTop="@dimen/field_margin"
-            android:layout_marginLeft="@dimen/field_margin"
-            android:onClick="onMove" />
+            android:layout_marginLeft="@dimen/field_margin"/>
 
         <ImageView
             android:layout_width="@dimen/field"
@@ -83,8 +77,7 @@
             android:layout_below="@+id/imv3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/field_margin"
-            android:onClick="onMove" />
+            android:layout_marginTop="@dimen/field_margin"/>
         <ImageView
             android:layout_width="@dimen/field"
             android:layout_height="@dimen/field"
@@ -94,8 +87,7 @@
             android:layout_toRightOf="@+id/imv6"
             android:layout_toEndOf="@+id/imv6"
             android:layout_marginTop="@dimen/field_margin"
-            android:layout_marginLeft="@dimen/field_margin"
-            android:onClick="onMove" />
+            android:layout_marginLeft="@dimen/field_margin"/>
         <ImageView
             android:layout_width="@dimen/field"
             android:layout_height="@dimen/field"
@@ -105,8 +97,7 @@
             android:layout_toRightOf="@+id/imv7"
             android:layout_toEndOf="@+id/imv7"
             android:layout_marginTop="@dimen/field_margin"
-            android:layout_marginLeft="@dimen/field_margin"
-            android:onClick="onMove" />
+            android:layout_marginLeft="@dimen/field_margin"/>
     </RelativeLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -118,16 +109,14 @@
             android:layout_height="wrap_content"
             android:text="@string/player1"
             android:id="@+id/btnPlay1"
-            android:layout_weight="1"
-            android:onClick="onReset"/>
+            android:layout_weight="1" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/player2"
             android:id="@+id/btnPlay2"
-            android:layout_weight="1"
-            android:onClick="onReset" />
+            android:layout_weight="1" />
     </LinearLayout>
 
     <TextView
