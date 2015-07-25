@@ -18,18 +18,15 @@ public class Setting {
     }
 
     public void setSound(boolean sound) {
-        SharedPreferences.Editor ed = preferences.edit();
-        ed.putBoolean(SETT_SOUND, sound);
-        ed.apply();
+        preferences.edit().putBoolean(SETT_SOUND, sound).apply();
     }
 
     public int getLevel() {
-        return preferences.getInt(SETT_LEVEL, 1);
+        return preferences.getInt(SETT_LEVEL, Game.LEVEL_1);
     }
 
     public void setLevel(int level) {
-        SharedPreferences.Editor ed = preferences.edit();
-        ed.putInt(SETT_LEVEL, level);
-        ed.apply();
+        preferences.edit().putInt(SETT_LEVEL, level).apply();
     }
+
 }

@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d("MENU", "onCreateOptionsMenu()");
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem mnSound = menu.findItem(R.id.menu_sound);
         mnSound.setCheckable(true);
@@ -76,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         mnSound.setIcon(setting.isSound()
                 ? android.R.drawable.ic_lock_silent_mode_off
                 : android.R.drawable.ic_lock_silent_mode);
+
+        MenuItem mnLevel = menu.findItem(R.id.menu_level);
+        mnLevel.setTitle(String.format(getResources().getString(R.string.level), setting.getLevel()));
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -91,12 +95,12 @@ public class MainActivity extends AppCompatActivity {
                         ? android.R.drawable.ic_lock_silent_mode_off
                         : android.R.drawable.ic_lock_silent_mode);
                 break;
+
+            case R.id.menu_level:
+                setting.setLevel(setting.getLevel() == Game.LEVEL_1 ? Game.LEVEL_2 : Game.LEVEL_1);
+                item.setTitle(String.format(getResources().getString(R.string.level), setting.getLevel()));
+                break;
         }
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            startActivity(new Intent(this, SettingsActivity.class));
-//            return true;
-//        }
         return super.onOptionsItemSelected(item);
     }
 

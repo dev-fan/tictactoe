@@ -19,6 +19,8 @@ public class Game {
     private final static String LOG_TAG= "3T_Game";
     private final static int PLAYER_X = 1;
     private final static int PLAYER_O = 2;
+    public final static int LEVEL_1 = 1;
+    public final static int LEVEL_2 = 2;
 
     private Context cnx;
 
@@ -88,7 +90,7 @@ public class Game {
             if (field[i] == 0) {
                 empty_field.add(i);
                 if (i % 2 == 0) {
-                    if (i == 4) {
+                    if (i == 4 && setting.getLevel() == LEVEL_2) {
                         position = 4;
                     }
                     empty_field_priority.add(i);
@@ -97,7 +99,7 @@ public class Game {
         }
         if (!empty_field.isEmpty()) {
             Random rnd = new Random();
-            if (position < 0 && !empty_field_priority.isEmpty()) {
+            if (position < 0 && !empty_field_priority.isEmpty() && setting.getLevel() == LEVEL_2) {
                 position = empty_field_priority.get(rnd.nextInt(empty_field_priority.size()));
             }
             if (position < 0) {

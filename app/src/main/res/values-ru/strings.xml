@@ -6,4 +6,5 @@
     <string name="player_win">Игрок %s выиграл!</string>
     <string name="draw_game">Ничья!</string>
     <string name="sound">Звук</string>
+    <string name="level">Уровень %d</string>
 </resources>
