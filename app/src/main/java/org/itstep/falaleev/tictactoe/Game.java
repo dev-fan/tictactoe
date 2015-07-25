@@ -23,11 +23,11 @@ public class Game {
     private Context cnx;
 
     private ArrayList<ImageView> elements;
+    private Setting setting;
     private TextView tvResult;
     private int counter = 0;
     private boolean finish = false;
     private boolean isWithComp = false;
-    private boolean isSoundOn = false;
     private int[] field = new int[9];
     private int[][] win = {
             {0, 1, 2},
@@ -40,8 +40,9 @@ public class Game {
             {2, 4, 6},
     };
 
-    public Game(Context cnx) {
+    public Game(Context cnx, Setting setting) {
         this.cnx = cnx;
+        this.setting = setting;
     }
 
     public void reset() {
@@ -143,7 +144,7 @@ public class Game {
     }
 
     public void playSound(int fileId) {
-        if (isSoundOn) {
+        if (setting.isSound()) {
             MediaPlayer mp = MediaPlayer.create(cnx, fileId);
             mp.setOnCompletionListener(new SoundCompletion());
             mp.start();
@@ -167,14 +168,6 @@ public class Game {
 
     public boolean isWithComp() {
         return isWithComp;
-    }
-
-    public boolean isSoundOn() {
-        return isSoundOn;
-    }
-
-    public void setSoundOn(boolean isSoundOn) {
-        this.isSoundOn = isSoundOn;
     }
 
     public boolean isFinish() {

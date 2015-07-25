@@ -1,5 +1,6 @@
 package org.itstep.falaleev.tictactoe;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnPlay2;
 
     private Game game;
+    private Setting setting;
     private ArrayList<ImageView> elements = new ArrayList<>(9);
 
     @Override
@@ -30,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        game = new Game(this);
+        setting = new Setting(getPreferences(MODE_PRIVATE));
+        game = new Game(this, setting);
         ButtonClick BtnHandler = new ButtonClick(game);
         FieldClick fldHandler = new FieldClick(game);
 
@@ -69,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         Log.d("MENU", "onPrepareOptionsMenu()");
         MenuItem mnSound = menu.findItem(R.id.menu_sound);
-        mnSound.setChecked(game.isSoundOn());
-        mnSound.setIcon(game.isSoundOn()
+        mnSound.setChecked(setting.isSound());
+        mnSound.setIcon(setting.isSound()
                 ? android.R.drawable.ic_lock_silent_mode_off
                 : android.R.drawable.ic_lock_silent_mode);
         return super.onPrepareOptionsMenu(menu);
@@ -82,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_sound:
-                game.setSoundOn(!game.isSoundOn());
-                item.setChecked(game.isSoundOn());
-                item.setIcon(game.isSoundOn()
+                setting.setSound(!setting.isSound());
+                item.setChecked(setting.isSound());
+                item.setIcon(setting.isSound()
                         ? android.R.drawable.ic_lock_silent_mode_off
                         : android.R.drawable.ic_lock_silent_mode);
                 break;
