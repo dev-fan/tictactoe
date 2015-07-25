@@ -6,4 +6,10 @@
     <string name="draw_game">Draw game!</string>
     <string name="sound">Sound</string>
     <string name="level">Level %d</string>
+    <string name="statistics">Statistics</string>
+    <string name="win_count">Win count</string>
+    <string name="user">User</string>
+    <string name="comp">Computer</string>
+    <string name="draw">Draw</string>
+    <string name="reset">Reset</string>
 </resources>

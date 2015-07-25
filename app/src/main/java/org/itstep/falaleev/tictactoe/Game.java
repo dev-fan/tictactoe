@@ -22,9 +22,10 @@ public class Game {
     public final static int LEVEL_2 = 2;
 
     private Context cnx;
+    private Setting setting;
+    private Statistic stat;
 
     private ArrayList<ImageView> elements;
-    private Setting setting;
     private TextView tvResult;
     private int counter = 0;
     private boolean finish = false;
@@ -41,9 +42,10 @@ public class Game {
             {2, 4, 6},
     };
 
-    public Game(Context cnx, Setting setting) {
+    public Game(Context cnx, Setting setting, Statistic stat) {
         this.cnx = cnx;
         this.setting = setting;
+        this.stat = stat;
     }
 
     public void reset() {
@@ -132,6 +134,9 @@ public class Game {
                 String tpl = cnx.getResources().getString(R.string.player_win);
                 tvResult.setText(String.format(tpl, (field[c[0]] == PLAYER_X ? "X" : "O")));
                 playSound((field[c[0]] == PLAYER_X ? R.raw.x : (isWithComp ? R.raw.fail : R.raw.o)));
+                if (isWithComp) {
+                    stat.addWinCount((field[c[0]] == PLAYER_X ? Statistic.KEY_USER : Statistic.KEY_COMP));
+                }
                 return;
             }
         }
@@ -139,6 +144,9 @@ public class Game {
         if (counter > 8) {
             finish = true;
             tvResult.setText(cnx.getResources().getString(R.string.draw_game));
+            if (isWithComp) {
+                stat.addWinCount(Statistic.KEY_DRAW);
+            }
         }
     }
 

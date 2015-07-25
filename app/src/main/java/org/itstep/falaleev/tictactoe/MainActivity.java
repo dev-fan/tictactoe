@@ -1,5 +1,6 @@
 package org.itstep.falaleev.tictactoe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -30,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setting = new Setting(getPreferences(MODE_PRIVATE));
-        game = new Game(this, setting);
+        setting = new Setting(getSharedPreferences(Setting.KEY, MODE_PRIVATE));
+        Statistic stat = new Statistic(getSharedPreferences(Statistic.KEY, MODE_PRIVATE));
+        game = new Game(this, setting, stat);
         ButtonClick BtnHandler = new ButtonClick(game);
         FieldClick fldHandler = new FieldClick(game);
 
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         MenuItem mnLevel = menu.findItem(R.id.menu_level);
         mnLevel.setTitle(String.format(getResources().getString(R.string.level), setting.getLevel()));
+        mnLevel.setVisible(game.isWithComp());
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -94,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_level:
                 setting.setLevel(setting.getLevel() == Game.LEVEL_1 ? Game.LEVEL_2 : Game.LEVEL_1);
                 item.setTitle(String.format(getResources().getString(R.string.level), setting.getLevel()));
+                item.setVisible(game.isWithComp());
+                break;
+
+            case R.id.menu_statistic:
+                startActivity(new Intent(this, StatActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

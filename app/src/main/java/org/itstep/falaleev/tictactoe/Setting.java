@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 public class Setting {
 
+    public static final String KEY = "ttt_settings";
     private static final String SETT_SOUND = "sound";
     private static final String SETT_LEVEL = "level";
 

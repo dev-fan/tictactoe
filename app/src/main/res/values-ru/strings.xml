@@ -7,4 +7,10 @@
     <string name="draw_game">Ничья!</string>
     <string name="sound">Звук</string>
     <string name="level">Уровень %d</string>
+    <string name="statistics">Статистика</string>
+    <string name="win_count">Количество побед</string>
+    <string name="user">Пользователь</string>
+    <string name="comp">Компьютер</string>
+    <string name="draw">Ничья</string>
+    <string name="reset">Сброс</string>
 </resources>
