@@ -4,4 +4,5 @@
     <string name="player2">2 Player</string>
     <string name="player_win">Player %s win!</string>
     <string name="draw_game">Draw game!</string>
+    <string name="sound">Sound</string>
 </resources>

@@ -5,4 +5,5 @@
     <string name="player2">2 игрока</string>
     <string name="player_win">Игрок %s выиграл!</string>
     <string name="draw_game">Ничья!</string>
+    <string name="sound">Звук</string>
 </resources>

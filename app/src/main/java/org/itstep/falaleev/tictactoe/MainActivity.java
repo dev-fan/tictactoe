@@ -2,6 +2,9 @@ package org.itstep.falaleev.tictactoe;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final static String LOG_TAG_MAIN = "3T_Main";
+    private final static String LOG_TAG = "3T_Main";
 
     Button btnPlay1;
     Button btnPlay2;
@@ -54,35 +57,44 @@ public class MainActivity extends AppCompatActivity {
 
     // Menu
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        menu.add(3, 7, 5, "Gps").setIntent(new Intent(this, GpsActivity.class));
-//        // Загрузка меню из файла (Inflate the menu; this adds items to the action bar if it is present.)
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        menu.setGroupVisible(1, chbOptMenu.isChecked());
-//        return super.onPrepareOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        Intent intent;
-//        switch (id) {
-//            case R.id.miPreference:
-//                startActivity(new Intent(this, PreferenceActivity.class));
-//                break;
-//        }
-//        //noinspection SimplifiableIfStatement
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem mnSound = menu.findItem(R.id.menu_sound);
+        mnSound.setCheckable(true);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        Log.d("MENU", "onPrepareOptionsMenu()");
+        MenuItem mnSound = menu.findItem(R.id.menu_sound);
+        mnSound.setChecked(game.isSoundOn());
+        mnSound.setIcon(game.isSoundOn()
+                ? android.R.drawable.ic_lock_silent_mode_off
+                : android.R.drawable.ic_lock_silent_mode);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d("MENU", "onOptionsItemSelected()");
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_sound:
+                game.setSoundOn(!game.isSoundOn());
+                item.setChecked(game.isSoundOn());
+                item.setIcon(game.isSoundOn()
+                        ? android.R.drawable.ic_lock_silent_mode_off
+                        : android.R.drawable.ic_lock_silent_mode);
+                break;
+        }
+        //noinspection SimplifiableIfStatement
 //        if (id == R.id.action_settings) {
 //            startActivity(new Intent(this, SettingsActivity.class));
 //            return true;
 //        }
-//        return super.onOptionsItemSelected(item);
-//    }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

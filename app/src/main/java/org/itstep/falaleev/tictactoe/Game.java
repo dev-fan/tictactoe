@@ -27,6 +27,7 @@ public class Game {
     private int counter = 0;
     private boolean finish = false;
     private boolean isWithComp = false;
+    private boolean isSoundOn = false;
     private int[] field = new int[9];
     private int[][] win = {
             {0, 1, 2},
@@ -142,10 +143,12 @@ public class Game {
     }
 
     public void playSound(int fileId) {
-        MediaPlayer mp = MediaPlayer.create(cnx, fileId);
-        mp.setOnCompletionListener(new SoundCompletion());
-        mp.start();
-        mp.setVolume(0.25f, 0.25f);
+        if (isSoundOn) {
+            MediaPlayer mp = MediaPlayer.create(cnx, fileId);
+            mp.setOnCompletionListener(new SoundCompletion());
+            mp.start();
+            mp.setVolume(0.25f, 0.25f);
+        }
     }
 
     // Getter/Setter
@@ -164,6 +167,14 @@ public class Game {
 
     public boolean isWithComp() {
         return isWithComp;
+    }
+
+    public boolean isSoundOn() {
+        return isSoundOn;
+    }
+
+    public void setSoundOn(boolean isSoundOn) {
+        this.isSoundOn = isSoundOn;
     }
 
     public boolean isFinish() {
