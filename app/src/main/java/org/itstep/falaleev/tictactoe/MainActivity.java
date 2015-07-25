@@ -1,9 +1,7 @@
 package org.itstep.falaleev.tictactoe;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.d("MENU", "onCreateOptionsMenu()");
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem mnSound = menu.findItem(R.id.menu_sound);
         mnSound.setCheckable(true);
@@ -71,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Log.d("MENU", "onPrepareOptionsMenu()");
         MenuItem mnSound = menu.findItem(R.id.menu_sound);
         mnSound.setChecked(setting.isSound());
         mnSound.setIcon(setting.isSound()
@@ -85,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d("MENU", "onOptionsItemSelected()");
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_sound:

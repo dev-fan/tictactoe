@@ -1,6 +1,5 @@
 package org.itstep.falaleev.tictactoe.handler;
 
-import android.util.Log;
 import android.view.View;
 
 import org.itstep.falaleev.tictactoe.Game;
@@ -18,7 +17,6 @@ public class ButtonClick implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Log.d(LOG_TAG, "onClick(): " + v.getId());
         switch (v.getId()) {
             case R.id.btnPlay1:
                 game.setWithComp(true);

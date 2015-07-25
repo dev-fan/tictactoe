@@ -3,7 +3,6 @@ package org.itstep.falaleev.tictactoe;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,7 +61,6 @@ public class Game {
     }
 
     public boolean move(int position) {
-        Log.d(LOG_TAG, "move(): position=" + position);
         ImageView v = elements.get(position);
         if (!finish && !(v.getBackground() instanceof BitmapDrawable)) {
             int pic_res;
@@ -82,7 +80,6 @@ public class Game {
     }
 
     public void moveComp() {
-        Log.d(LOG_TAG, "moveComp()");
         ArrayList<Integer> empty_field = new ArrayList<>();
         ArrayList<Integer> empty_field_priority = new ArrayList<>();
         int position = -1;
