@@ -7,8 +7,6 @@ import org.itstep.falaleev.tictactoe.R;
 
 public class FieldClick implements View.OnClickListener {
 
-    public static final String LOG_TAG = "3T_FieldClick";
-
     private Game game;
 
     public FieldClick(Game game) {

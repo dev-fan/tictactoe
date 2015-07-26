@@ -15,7 +15,6 @@ import java.util.Random;
 
 public class Game {
 
-    private final static String LOG_TAG= "3T_Game";
     private final static int PLAYER_X = 1;
     private final static int PLAYER_O = 2;
     public final static int LEVEL_1 = 1;

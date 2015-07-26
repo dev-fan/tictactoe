@@ -17,8 +17,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final static String LOG_TAG = "3T_Main";
-
     Button btnPlay1;
     Button btnPlay2;
 
