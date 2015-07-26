@@ -10,7 +10,7 @@
     tools:context="org.itstep.falaleev.tictactoe.StatActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/win_count"
         android:id="@+id/textView3"
@@ -18,74 +18,70 @@
         android:gravity="center_horizontal"
         android:textColor="@color/black" />
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/user"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/red" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textColor="@color/red" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:layout_weight="1"
+                android:id="@+id/tvWinUser"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+        </TableRow>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/draw"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/black" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/draw"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:layout_weight="1"
+                android:id="@+id/tvDraw"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+        </TableRow>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/comp"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/blue" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_weight="1"
-            android:id="@+id/tvWinUser"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_weight="1"
-            android:id="@+id/tvDraw"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:layout_weight="1"
-            android:id="@+id/tvWinComp"
-            android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:textColor="@color/black" />
-    </LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:textColor="@color/blue" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8"
+                android:layout_weight="1"
+                android:id="@+id/tvWinComp"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+        </TableRow>
+    </TableLayout>
 
     <Button
         android:layout_width="wrap_content"
