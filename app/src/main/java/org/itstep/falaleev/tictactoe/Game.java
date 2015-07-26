@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ public class Game {
     private Context cnx;
     private Setting setting;
     private Statistic stat;
+    Animation anim;
 
     private ArrayList<ImageView> elements;
     private TextView tvResult;
@@ -44,6 +47,7 @@ public class Game {
         this.cnx = cnx;
         this.setting = setting;
         this.stat = stat;
+        anim = AnimationUtils.loadAnimation(cnx, R.anim.move);
     }
 
     public void reset() {
@@ -74,6 +78,7 @@ public class Game {
             v.setBackgroundResource(pic_res);
             counter++;
             check();
+            v.startAnimation(anim);
             return true;
         }
         return false;
