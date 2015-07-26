@@ -28,7 +28,6 @@ public class Game {
     private TextView tvResult;
     private int counter = 0;
     private boolean finish = false;
-    private boolean isWithComp = false;
     private int[] field = new int[9];
     private int[][] win = {
             {0, 1, 2},
@@ -132,8 +131,8 @@ public class Game {
                 finish = true;
                 String tpl = cnx.getResources().getString(R.string.player_win);
                 tvResult.setText(String.format(tpl, (field[c[0]] == PLAYER_X ? "X" : "O")));
-                playSound((field[c[0]] == PLAYER_X ? R.raw.x : (isWithComp ? R.raw.fail : R.raw.o)));
-                if (isWithComp) {
+                playSound((field[c[0]] == PLAYER_X ? R.raw.x : (setting.isWithComp() ? R.raw.fail : R.raw.o)));
+                if (setting.isWithComp()) {
                     stat.addWinCount((field[c[0]] == PLAYER_X ? Statistic.KEY_USER : Statistic.KEY_COMP));
                 }
                 return;
@@ -143,7 +142,7 @@ public class Game {
         if (counter > 8) {
             finish = true;
             tvResult.setText(cnx.getResources().getString(R.string.draw_game));
-            if (isWithComp) {
+            if (setting.isWithComp()) {
                 stat.addWinCount(Statistic.KEY_DRAW);
             }
         }
@@ -166,14 +165,6 @@ public class Game {
 
     public void setElements(ArrayList<ImageView> elements) {
         this.elements = elements;
-    }
-
-    public void setWithComp(boolean isWithComp) {
-        this.isWithComp = isWithComp;
-    }
-
-    public boolean isWithComp() {
-        return isWithComp;
     }
 
     public boolean isFinish() {

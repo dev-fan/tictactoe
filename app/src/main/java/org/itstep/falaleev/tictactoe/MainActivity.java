@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setting = new Setting(getSharedPreferences(Setting.KEY, MODE_PRIVATE));
         Statistic stat = new Statistic(getSharedPreferences(Statistic.KEY, MODE_PRIVATE));
         game = new Game(this, setting, stat);
-        ButtonClick BtnHandler = new ButtonClick(game);
-        FieldClick fldHandler = new FieldClick(game);
+        ButtonClick BtnHandler = new ButtonClick(game, setting);
+        FieldClick fldHandler = new FieldClick(game, setting);
 
         btnPlay1 = (Button) findViewById(R.id.btnPlay1);
         btnPlay1.setOnClickListener(BtnHandler);
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
         MenuItem mnLevel = menu.findItem(R.id.menu_level);
         mnLevel.setTitle(String.format(getResources().getString(R.string.level), setting.getLevel()));
-        mnLevel.setVisible(game.isWithComp());
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -95,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_level:
                 setting.setLevel(setting.getLevel() == Game.LEVEL_1 ? Game.LEVEL_2 : Game.LEVEL_1);
                 item.setTitle(String.format(getResources().getString(R.string.level), setting.getLevel()));
-                item.setVisible(game.isWithComp());
                 break;
 
             case R.id.menu_statistic:
