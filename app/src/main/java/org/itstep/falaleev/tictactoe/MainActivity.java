@@ -74,8 +74,15 @@ public class MainActivity extends AppCompatActivity {
                 ? android.R.drawable.ic_lock_silent_mode_off
                 : android.R.drawable.ic_lock_silent_mode);
 
-        MenuItem mnLevel = menu.findItem(R.id.menu_level);
-        mnLevel.setTitle(String.format(getResources().getString(R.string.level), setting.getLevel()));
+        MenuItem mnLevel1 = menu.findItem(R.id.menu_level1);
+        MenuItem mnLevel2 = menu.findItem(R.id.menu_level2);
+        mnLevel1.setTitle(String.format(getResources().getString(R.string.level), Game.LEVEL_1));
+        mnLevel2.setTitle(String.format(getResources().getString(R.string.level), Game.LEVEL_2));
+        if (setting.getLevel() == Game.LEVEL_1) {
+            mnLevel1.setChecked(true);
+        } else {
+            mnLevel2.setChecked(true);
+        }
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -91,9 +98,12 @@ public class MainActivity extends AppCompatActivity {
                         : android.R.drawable.ic_lock_silent_mode);
                 break;
 
-            case R.id.menu_level:
-                setting.setLevel(setting.getLevel() == Game.LEVEL_1 ? Game.LEVEL_2 : Game.LEVEL_1);
-                item.setTitle(String.format(getResources().getString(R.string.level), setting.getLevel()));
+            case R.id.menu_level1:
+                setting.setLevel(Game.LEVEL_1);
+                break;
+
+            case R.id.menu_level2:
+                setting.setLevel(Game.LEVEL_2);
                 break;
 
             case R.id.menu_statistic:

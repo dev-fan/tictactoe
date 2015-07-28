@@ -4,9 +4,16 @@
     <item android:id="@+id/menu_sound"
         android:title="@string/sound"
         app:showAsAction="always" />
-    <item android:id="@+id/menu_level"
-        android:title=""
-        app:showAsAction="never" />
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/menu_level">
+        <item android:id="@+id/menu_level1"
+            android:title="Level 1"
+            app:showAsAction="never" />
+        <item android:id="@+id/menu_level2"
+            android:title="Level 1"
+            app:showAsAction="never" />
+    </group>
     <item android:id="@+id/menu_statistic"
         android:title="@string/statistics"
         app:showAsAction="never" />

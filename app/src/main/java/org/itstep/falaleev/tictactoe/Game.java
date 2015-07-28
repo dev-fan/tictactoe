@@ -25,7 +25,6 @@ public class Game {
     private Context cnx;
     private Setting setting;
     private Statistic stat;
-    Animation anim;
 
     private ArrayList<ImageView> elements;
     private TextView tvResult;
@@ -47,7 +46,6 @@ public class Game {
         this.cnx = cnx;
         this.setting = setting;
         this.stat = stat;
-        anim = AnimationUtils.loadAnimation(cnx, R.anim.move);
     }
 
     public void reset() {
@@ -78,6 +76,7 @@ public class Game {
             v.setBackgroundResource(pic_res);
             counter++;
             check();
+            Animation anim = AnimationUtils.loadAnimation(cnx, R.anim.move);
             v.startAnimation(anim);
             return true;
         }
