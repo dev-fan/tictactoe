@@ -109,6 +109,9 @@
             android:layout_height="wrap_content"
             android:text="@string/player1"
             android:id="@+id/btnPlay1"
+            android:background="@drawable/buttonshape"
+            android:layout_margin="@dimen/field_margin"
+            android:textSize="@dimen/button_text"
             android:layout_weight="1" />
 
         <Button
@@ -116,6 +119,9 @@
             android:layout_height="wrap_content"
             android:text="@string/player2"
             android:id="@+id/btnPlay2"
+            android:background="@drawable/buttonshape"
+            android:layout_margin="@dimen/field_margin"
+            android:textSize="@dimen/button_text"
             android:layout_weight="1" />
     </LinearLayout>
 

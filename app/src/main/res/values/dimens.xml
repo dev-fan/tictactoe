@@ -9,4 +9,5 @@
     <dimen name="info_text_size">35sp</dimen>
     <dimen name="splash_image">50dp</dimen>
     <dimen name="reset_margin_top">20dp</dimen>
+    <dimen name="button_text">20sp</dimen>
 </resources>
