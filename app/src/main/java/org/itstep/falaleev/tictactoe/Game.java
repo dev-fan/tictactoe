@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.itstep.falaleev.tictactoe.handler.SoundCompletion;
@@ -28,6 +29,7 @@ public class Game {
 
     private ArrayList<ImageView> elements;
     private TextView tvResult;
+    private LinearLayout llFinishLine;
     private int counter = 0;
     private boolean finish = false;
     private int[] field = new int[9];
@@ -54,6 +56,7 @@ public class Game {
         }
         tvResult.setText("");
         Arrays.fill(field, 0);
+        llFinishLine.removeAllViews();
         counter = 0;
         finish = false;
     }
@@ -130,7 +133,8 @@ public class Game {
 
     private void check() {
         // Проверка наличия победителя
-        for (int c[] : win) {
+        for (int i = 0; i < win.length; i++) {
+            int c[] = win[i];
             if (field[c[0]] > 0 && field[c[0]] == field[c[1]] && field[c[1]] == field[c[2]]) {
                 finish = true;
                 String tpl = cnx.getResources().getString(R.string.player_win);
@@ -139,6 +143,10 @@ public class Game {
                 if (setting.isWithComp()) {
                     stat.addWinCount((field[c[0]] == PLAYER_X ? Statistic.KEY_USER : Statistic.KEY_COMP));
                 }
+                View line = new FinishLine(cnx, i);
+                Animation anim = AnimationUtils.loadAnimation(cnx, R.anim.move);
+                line.startAnimation(anim);
+                llFinishLine.addView(line);
                 return;
             }
         }
@@ -165,6 +173,10 @@ public class Game {
 
     public void setTvResult(TextView tvResult) {
         this.tvResult = tvResult;
+    }
+
+    public void setFinishLine(LinearLayout llFinishLine) {
+        this.llFinishLine = llFinishLine;
     }
 
     public void setElements(ArrayList<ImageView> elements) {

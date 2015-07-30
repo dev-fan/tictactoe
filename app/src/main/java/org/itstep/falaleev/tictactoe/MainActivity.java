@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.itstep.falaleev.tictactoe.handler.ButtonClick;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
         game.setElements(elements);
         game.setTvResult((TextView) findViewById(R.id.tvWin));
+        game.setFinishLine((LinearLayout) findViewById(R.id.llFinish));
     }
 
     // Menu

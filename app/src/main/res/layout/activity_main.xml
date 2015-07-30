@@ -98,6 +98,18 @@
             android:layout_toEndOf="@+id/imv7"
             android:layout_marginTop="@dimen/field_margin"
             android:layout_marginLeft="@dimen/field_margin"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/llFinish"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/imv6"
+            android:layout_alignRight="@+id/imv2"
+            android:layout_alignEnd="@+id/imv2" >
+        </LinearLayout>
     </RelativeLayout>
     <LinearLayout
         android:orientation="horizontal"
