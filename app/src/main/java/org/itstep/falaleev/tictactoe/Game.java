@@ -3,6 +3,7 @@ package org.itstep.falaleev.tictactoe;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,10 +19,11 @@ import java.util.Random;
 
 public class Game {
 
-    private final static int PLAYER_X = 1;
-    private final static int PLAYER_O = 2;
     public final static int LEVEL_1 = 1;
     public final static int LEVEL_2 = 2;
+    private final static int PLAYER_X = 1;
+    private final static int PLAYER_O = 2;
+    private final static String SAVE_FIELD = "field";
 
     private Context cnx;
     private Setting setting;
@@ -167,6 +169,22 @@ public class Game {
             mp.start();
             mp.setVolume(0.25f, 0.25f);
         }
+    }
+
+    public void save(Bundle bundle) {
+        bundle.putIntArray(SAVE_FIELD, field);
+    }
+
+    public void restore(Bundle bundle) {
+        field = bundle.getIntArray(SAVE_FIELD);
+        for (int i = 0; i < field.length; i++) {
+            if (field[i] == PLAYER_X) {
+                elements.get(i).setBackgroundResource(R.drawable.x);
+            } else if (field[i] == PLAYER_O) {
+                elements.get(i).setBackgroundResource(R.drawable.o);
+            }
+        }
+        check();
     }
 
     // Getter/Setter

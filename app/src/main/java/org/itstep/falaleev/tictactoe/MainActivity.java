@@ -2,7 +2,9 @@ package org.itstep.falaleev.tictactoe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -57,16 +59,11 @@ public class MainActivity extends AppCompatActivity {
         rlField.post(new Runnable() {
             @Override
             public void run() {
-                int fieldPadding = (int) getResources().getDimensionPixelSize(R.dimen.field_margin);
+                int fieldPadding = getResources().getDimensionPixelSize(R.dimen.field_margin);
                 int minSize = Math.min(rlField.getMeasuredWidth(), rlField.getMeasuredHeight());
                 int btnSize = (int) Math.floor((minSize - fieldPadding * 4) / 3);
-                int i = 0;
                 for (ImageView iv : elements) {
                     iv.setOnClickListener(fldHandler);
-                    iv.setMinimumHeight(btnSize);
-                    iv.setMaxHeight(btnSize);
-                    iv.setMinimumWidth(btnSize);
-                    iv.setMaxWidth(btnSize);
                     ViewGroup.LayoutParams layoutParams = iv.getLayoutParams();
                     layoutParams.width = btnSize;
                     layoutParams.height = btnSize;
@@ -80,6 +77,18 @@ public class MainActivity extends AppCompatActivity {
         game.setElements(elements);
         game.setTvResult((TextView) findViewById(R.id.tvWin));
         game.setFinishLine((LinearLayout) findViewById(R.id.llFinish));
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        game.restore(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        game.save(outState);
     }
 
     // Menu
