@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.itstep.falaleev.tictactoe.handler.ButtonClick;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Statistic stat = new Statistic(getSharedPreferences(Statistic.KEY, MODE_PRIVATE));
         game = new Game(this, setting, stat);
         ButtonClick BtnHandler = new ButtonClick(game, setting);
-        FieldClick fldHandler = new FieldClick(game, setting);
+        final FieldClick fldHandler = new FieldClick(game, setting);
 
         btnPlay1 = (Button) findViewById(R.id.btnPlay1);
         btnPlay1.setOnClickListener(BtnHandler);
@@ -50,9 +52,31 @@ public class MainActivity extends AppCompatActivity {
         elements.add(6, (ImageView) findViewById(R.id.imv6));
         elements.add(7, (ImageView) findViewById(R.id.imv7));
         elements.add(8, (ImageView) findViewById(R.id.imv8));
-        for (ImageView iv : elements) {
-            iv.setOnClickListener(fldHandler);
-        }
+
+        final RelativeLayout rlField = (RelativeLayout) findViewById(R.id.rlField);
+        rlField.post(new Runnable() {
+            @Override
+            public void run() {
+                int fieldPadding = (int) getResources().getDimensionPixelSize(R.dimen.field_margin);
+                int minSize = Math.min(rlField.getMeasuredWidth(), rlField.getMeasuredHeight());
+                int btnSize = (int) Math.floor((minSize - fieldPadding * 4) / 3);
+                int i = 0;
+                for (ImageView iv : elements) {
+                    iv.setOnClickListener(fldHandler);
+                    iv.setMinimumHeight(btnSize);
+                    iv.setMaxHeight(btnSize);
+                    iv.setMinimumWidth(btnSize);
+                    iv.setMaxWidth(btnSize);
+                    ViewGroup.LayoutParams layoutParams = iv.getLayoutParams();
+                    layoutParams.width = btnSize;
+                    layoutParams.height = btnSize;
+                    iv.setLayoutParams(layoutParams);
+                }
+                rlField.setPadding(fieldPadding, fieldPadding, fieldPadding, fieldPadding);
+                int wrapContentLin = LinearLayout.LayoutParams.WRAP_CONTENT;
+                rlField.setLayoutParams(new LinearLayout.LayoutParams(wrapContentLin, wrapContentLin));
+            }
+        });
         game.setElements(elements);
         game.setTvResult((TextView) findViewById(R.id.tvWin));
         game.setFinishLine((LinearLayout) findViewById(R.id.llFinish));
