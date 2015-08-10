@@ -34,6 +34,7 @@ public class Game {
     private LinearLayout llFinishLine;
     private int counter = 0;
     private boolean finish = false;
+    private boolean isRestore = false;
     private int[] field = new int[9];
     private int[][] win = {
             {0, 1, 2},
@@ -68,6 +69,7 @@ public class Game {
     }
 
     public boolean move(int position) {
+        isRestore = false;
         ImageView v = elements.get(position);
         if (!finish && !(v.getBackground() instanceof BitmapDrawable)) {
             int pic_res;
@@ -142,7 +144,7 @@ public class Game {
                 String tpl = cnx.getResources().getString(R.string.player_win);
                 tvResult.setText(String.format(tpl, (field[c[0]] == PLAYER_X ? "X" : "O")));
                 playSound((field[c[0]] == PLAYER_X ? R.raw.x : (setting.isWithComp() ? R.raw.fail : R.raw.o)));
-                if (setting.isWithComp()) {
+                if (setting.isWithComp() && !isRestore) {
                     stat.addWinCount((field[c[0]] == PLAYER_X ? Statistic.KEY_USER : Statistic.KEY_COMP));
                 }
                 View line = new FinishLine(cnx, i);
@@ -156,7 +158,7 @@ public class Game {
         if (counter > 8) {
             finish = true;
             tvResult.setText(cnx.getResources().getString(R.string.draw_game));
-            if (setting.isWithComp()) {
+            if (setting.isWithComp() && !isRestore) {
                 stat.addWinCount(Statistic.KEY_DRAW);
             }
         }
@@ -176,12 +178,15 @@ public class Game {
     }
 
     public void restore(Bundle bundle) {
+        isRestore = true;
         field = bundle.getIntArray(SAVE_FIELD);
         for (int i = 0; i < field.length; i++) {
             if (field[i] == PLAYER_X) {
                 elements.get(i).setBackgroundResource(R.drawable.x);
+                counter++;
             } else if (field[i] == PLAYER_O) {
                 elements.get(i).setBackgroundResource(R.drawable.o);
+                counter++;
             }
         }
         check();
